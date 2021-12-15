@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button v-on:click="penghitung += 1">Tambah 1</button>
+      <p>Tombol telah diklik sebanyak {{ penghitung }} kali.</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+          el: '#app',
+          data: {
+            penghitung: 0
+          }
+        })
+    </script>
+  </body>
+</html>

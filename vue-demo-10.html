@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="example">
+        <p>Pesan Asli: "{{ message }}"</p>
+        <p>Pesan terbalik yang dihitung: "{{ reversedMessage }}"</p>
+      </div>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+        el: '#app',
+        data: {
+          message: 'Hai'
+        },
+        computed: {
+          // sebuah computed getter
+          reversedMessage: function () {
+            // `this` mengarah ke instance Vue
+            return this.message.split('').reverse().join('')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

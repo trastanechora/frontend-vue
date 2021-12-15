@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <div>
+        <tombol-penghitung></tombol-penghitung>
+        <tombol-penghitung></tombol-penghitung>
+        <tombol-penghitung></tombol-penghitung>
+      </div>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      // Buat sebuah komponen baru dengan nama tombol-penghitung
+      Vue.component('tombol-penghitung', {
+        data: function () {
+          return {
+            penghitung: 0
+          }
+        },
+        template: '<button v-on:click="penghitung++">Kamu telah klik tombol ini {{ penghitung }} kali.</button>'
+      })
+
+    	new Vue({
+        el: '#app'
+      })
+    </script>
+  </body>
+</html>

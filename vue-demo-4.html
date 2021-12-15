@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <img v-bind:src="url" v-bind:alt="alt" />
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+        el: '#app',
+        data: {
+          url: 'https://saintif.com/wp-content/uploads/2020/07/kartun2.jpg',
+          alt: 'Gambar ABC',
+        }
+      })
+    </script>
+  </body>
+</html> 

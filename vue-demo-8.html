@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button v-on:click="lakukanSesuatu">Lakukan Sesuatu</button>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+        el: '#app',
+        methods: {
+          lakukanSesuatu() {
+            alert('Halo Vue');
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

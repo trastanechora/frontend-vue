@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="buah in listBuah">
+          {{ buah }}
+        </li>
+      </ul>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+        el: '#app',
+        data: {
+          listBuah: ['Apel', 'Jeruk', 'Melon']
+        }
+      })
+    </script>
+  </body>
+</html>

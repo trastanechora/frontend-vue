@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <input type="number" v-model:value="angka" />
+      <p v-if="angka > 9">Sangat Bagus</p>
+      <p v-else-if="angka > 7">Bagus</p>
+      <p v-else>Tetap Semangat! Jangan Menyerah :)</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+        el: '#app',
+        data: {
+          angka: 0
+        }
+      })
+    </script>
+  </body>
+</html>

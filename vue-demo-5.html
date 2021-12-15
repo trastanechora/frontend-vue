@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Belajar Frontend</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <input type="text" v-bind:value="nama" />
+      <p>{{ nama }}</p>
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+    	new Vue({
+        el: '#app',
+        data: {
+          nama: 'vue'
+        }
+      })
+    </script>
+  </body>
+</html> 
