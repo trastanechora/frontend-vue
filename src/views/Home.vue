@@ -14,5 +14,19 @@ export default {
   components: {
     HelloWorld,
   },
+  methods: {
+    handleScroll(event) {
+      console.log(event);
+    },
+  },
+  mounted() {
+    console.warn("Selamat datang di Vue!");
+  },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
 };
 </script>
