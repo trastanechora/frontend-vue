@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Demo from "../views/Demo.vue";
+import Tool from "../views/Tool.vue";
 
 Vue.use(VueRouter);
 
@@ -19,10 +21,21 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/demo",
+    name: "Demo",
+    component: Demo,
+  },
+  {
+    path: "/tool",
+    name: "Tool",
+    component: Tool,
+  },
 ];
 
 const router = new VueRouter({
   routes,
+  mode: "history",
 });
 
 export default router;
