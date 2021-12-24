@@ -8,49 +8,56 @@ import User from "@/views/User.vue";
 import UserDetail from "@/views/UserDetail.vue";
 
 import Default from "@/views/Default.vue";
+import DefaultLayout from "@/layout/DefaultLayout.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: About,
-  },
-  {
-    path: "/setting",
-    component: Default,
+    component: DefaultLayout,
     children: [
       {
         path: "",
-        name: "Setting",
-        component: Setting,
+        name: "Home",
+        component: Home,
       },
       {
-        path: "privacy",
-        name: "Privacy",
-        component: Privacy,
-      },
-    ],
-  },
-  {
-    path: "/user",
-    component: Default,
-    children: [
-      {
-        path: "",
-        name: "User",
-        component: User,
+        path: "/about",
+        name: "About",
+        component: About,
       },
       {
-        path: ":id",
-        name: "User Detail",
-        component: UserDetail,
+        path: "/setting",
+        component: Default,
+        children: [
+          {
+            path: "",
+            name: "Setting",
+            component: Setting,
+          },
+          {
+            path: "privacy",
+            name: "Privacy",
+            component: Privacy,
+          },
+        ],
+      },
+      {
+        path: "/user",
+        component: Default,
+        children: [
+          {
+            path: "",
+            name: "User",
+            component: User,
+          },
+          {
+            path: ":id",
+            name: "User Detail",
+            component: UserDetail,
+          },
+        ],
       },
     ],
   },
