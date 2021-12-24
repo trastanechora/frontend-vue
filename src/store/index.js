@@ -1,29 +1,26 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
+
+import user from "./user";
+import demo from "./demo";
 
 Vue.use(Vuex);
 
+const persistedDataState = createPersistedState({
+  paths: ["demo"],
+});
+
 export default new Vuex.Store({
-  state: {
-    angka: 14,
-    infoText: "Angka Lebih besar dari sepuluh",
-  },
-  mutations: {
-    setAngka(state, param) {
-      state.angka = param;
+  plugins: [persistedDataState],
+  modules: {
+    demo: {
+      namespaced: true,
+      ...demo,
     },
-    setInfo(state, param) {
-      state.infoText = param;
-    },
-  },
-  actions: {
-    changeAngkaValue(store, param) {
-      store.commit("setAngka", param);
-      if (param > 10) {
-        store.commit("setInfo", "Angka Lebih besar dari sepuluh");
-      } else {
-        store.commit("setInfo", "Angka Lebih kecil dari sepuluh");
-      }
+    user: {
+      namespaced: true,
+      ...user,
     },
   },
 });

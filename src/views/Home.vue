@@ -12,10 +12,10 @@ export default {
   name: "Home",
   computed: {
     angkaDariStore() {
-      return this.$store.state.angka;
+      return this.$store.state.demo.angka;
     },
     infoDariStore() {
-      return this.$store.state.infoText;
+      return this.$store.state.demo.infoText;
     },
   },
   data() {
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     changeAngka() {
-      this.$store.dispatch("changeAngkaValue", this.newInputValue);
+      this.$store.dispatch("demo/changeAngkaValue", this.newInputValue);
     },
   },
 };
