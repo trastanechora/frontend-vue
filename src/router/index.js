@@ -6,6 +6,7 @@ import Setting from "@/views/Setting.vue";
 import Privacy from "@/views/Privacy.vue";
 import User from "@/views/User.vue";
 import UserDetail from "@/views/UserDetail.vue";
+import Pokemon from "@/views/Pokemon.vue";
 
 import Default from "@/views/Default.vue";
 import DefaultLayout from "@/layout/DefaultLayout.vue";
@@ -58,6 +59,11 @@ const routes = [
             component: UserDetail,
           },
         ],
+      },
+      {
+        path: "/pokemon",
+        name: "Pokemon",
+        component: Pokemon,
       },
     ],
   },

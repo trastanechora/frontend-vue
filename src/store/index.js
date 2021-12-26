@@ -4,6 +4,7 @@ import createPersistedState from "vuex-persistedstate";
 
 import user from "./user";
 import demo from "./demo";
+import pokemon from "./pokemon";
 
 Vue.use(Vuex);
 
@@ -21,6 +22,10 @@ export default new Vuex.Store({
     user: {
       namespaced: true,
       ...user,
+    },
+    pokemon: {
+      namespaced: true,
+      ...pokemon,
     },
   },
 });
