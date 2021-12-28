@@ -6,16 +6,20 @@
         {{ pokemon.name }}
       </li>
     </ul>
+    <p>{{ infoPokemon }}</p>
     <button @click="fetchMorePokemon">Muat Lebih banyak</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "Pokemon",
   computed: {
     listPokemon() {
       return this.$store.state.pokemon.list;
+    },
+    infoPokemon() {
+      return this.$store.state.pokemon.info;
     },
   },
   methods: {

@@ -5,7 +5,9 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/setting">Setting</router-link> |
       <router-link to="/user">User</router-link> |
-      <router-link to="/pokemon">Pokemon</router-link>
+      <router-link to="/pokemon">Pokemon</router-link> |
+      <router-link to="/data">Data</router-link> |
+      <router-link to="/validation">Validasi</router-link>
     </div>
     <router-view />
   </div>

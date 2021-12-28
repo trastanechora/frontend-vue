@@ -2,19 +2,29 @@ import axios from "axios";
 
 const state = () => ({
   list: [],
+  info: "",
 });
 
 const mutations = {
   setList(state, param) {
     state.list = param;
   },
+  setInfo(state, param) {
+    state.info = param;
+  },
 };
 
 const actions = {
   fetchList(store) {
-    axios.get(`https://pokeapi.co/api/v2/pokemon`).then((response) => {
-      store.commit("setList", response.data.results);
-    });
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon`)
+      .then((response) => {
+        store.commit("setList", response.data.results);
+        store.commit("setInfo", "");
+      })
+      .catch((error) => {
+        store.commit("setInfo", error);
+      });
   },
   fetchMore(store) {
     axios
@@ -29,6 +39,10 @@ const actions = {
           ...store.state.list,
           ...response.data.results,
         ]);
+        store.commit("setInfo", "");
+      })
+      .catch((error) => {
+        store.commit("setInfo", error);
       });
   },
 };

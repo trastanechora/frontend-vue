@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "User",
+  name: "UserDetail",
   computed: {
     id() {
       return this.$route.params.id;
