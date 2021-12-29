@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view />
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -17,6 +17,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  padding: 0 20px;
 }
 
 #nav {

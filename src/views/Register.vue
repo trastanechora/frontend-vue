@@ -1,22 +1,36 @@
 <template>
   <div class="register">
-    <h1>Register Pengguna Baru</h1>
-    <div>
-      <div class="input-field">
-        <label for="username">Masukkan nama pengguna: </label><br />
-        <input id="username" type="text" v-model="usernameInput" />
-      </div>
-      <div class="input-field">
-        <label for="email">Masukkan email: </label><br />
-        <input id="email" type="email" v-model="emailInput" />
-      </div>
-      <div class="input-field">
-        <label for="password-input">Masukkan password baru: </label><br />
-        <input id="password-input" type="password" v-model="passwordInput" />
-      </div>
+    <h1 class="primary--text">Register Pengguna Baru</h1>
+    <v-col>
+      <v-row class="input-field">
+        <v-text-field
+          id="username"
+          label="Masukkan nama pengguna"
+          outlined
+          v-model="usernameInput"
+          autocomplete="off"
+        ></v-text-field>
+      </v-row>
+      <v-row class="input-field">
+        <v-text-field
+          id="email"
+          label="Masukkan email"
+          outlined
+          v-model="emailInput"
+          autocomplete="off"
+        ></v-text-field>
+      </v-row>
+      <v-row class="input-field">
+        <v-text-field
+          id="password"
+          label="Masukkan password baru"
+          outlined
+          v-model="passwordInput"
+        ></v-text-field>
+      </v-row>
       <p v-if="errorText" class="error-text">{{ errorText }}</p>
-      <button @click="doRegister">Simpan</button>
-    </div>
+      <v-btn color="primary" @click="doRegister">Simpan</v-btn>
+    </v-col>
   </div>
 </template>
 
@@ -94,7 +108,8 @@ export default {
 .error-text {
   color: red;
 }
-.input-field {
+.input-field,
+h1 {
   margin-bottom: 8px;
 }
 </style>
