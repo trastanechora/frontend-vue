@@ -1,17 +1,17 @@
 const state = () => ({
   currentUser: {
-    uuid: "",
+    id: "",
     username: "",
-    displayName: "",
-    role: "user",
-    imgUrl: "",
+    email: "",
   },
   userList: [],
 });
 
 const mutations = {
-  setCurrentUser(state, param) {
-    state.currentUser = param;
+  setCurrentUser(state, { id, username, email }) {
+    state.currentUser.id = id;
+    state.currentUser.username = username;
+    state.currentUser.email = email;
   },
   setUserList(state, param) {
     state.userList = param;

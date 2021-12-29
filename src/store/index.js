@@ -5,11 +5,12 @@ import createPersistedState from "vuex-persistedstate";
 import user from "./user";
 import demo from "./demo";
 import pokemon from "./pokemon";
+import auth from "./auth";
 
 Vue.use(Vuex);
 
 const persistedDataState = createPersistedState({
-  paths: ["demo"],
+  paths: ["demo", "auth.token"],
 });
 
 export default new Vuex.Store({
@@ -26,6 +27,10 @@ export default new Vuex.Store({
     pokemon: {
       namespaced: true,
       ...pokemon,
+    },
+    auth: {
+      namespaced: true,
+      ...auth,
     },
   },
 });

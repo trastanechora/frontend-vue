@@ -9,6 +9,10 @@ import UserDetail from "@/views/UserDetail.vue";
 import Pokemon from "@/views/Pokemon.vue";
 import Data from "@/views/Data.vue";
 import Validation from "@/views/Validation.vue";
+import Register from "@/views/Register.vue";
+import Login from "@/views/Login.vue";
+import Account from "@/views/Account.vue";
+import Forbidden from "@/views/Forbidden.vue";
 
 import Default from "@/views/Default.vue";
 import DefaultLayout from "@/layout/DefaultLayout.vue";
@@ -77,6 +81,29 @@ const routes = [
         name: "Validation",
         component: Validation,
       },
+      {
+        path: "/register",
+        name: "Register",
+        component: Register,
+      },
+      {
+        path: "/login",
+        name: "Login",
+        component: Login,
+      },
+      {
+        path: "/account",
+        name: "Account",
+        component: Account,
+        meta: {
+          auth: true,
+        },
+      },
+      {
+        path: "/forbidden",
+        name: "Forbidden",
+        component: Forbidden,
+      },
     ],
   },
 ];
@@ -85,6 +112,20 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, _, next) => {
+  const storeString = localStorage.getItem("vuex") || "{}";
+  const store = JSON.parse(storeString);
+  if (to.matched.some((record) => record.meta.auth)) {
+    if (store && !store.auth.token) {
+      next("/forbidden");
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
