@@ -1,50 +1,65 @@
 <template>
   <div class="register">
     <h1 class="primary--text">Register Pengguna Baru</h1>
-    <v-col>
-      <v-row class="input-field">
-        <v-text-field
-          id="username"
-          label="Masukkan nama pengguna"
-          outlined
-          v-model="usernameInput"
-          autocomplete="off"
-        ></v-text-field>
-      </v-row>
-      <v-row class="input-field">
-        <v-text-field
-          id="email"
-          label="Masukkan email"
-          outlined
-          v-model="emailInput"
-          autocomplete="off"
-        ></v-text-field>
-      </v-row>
-      <v-row class="input-field">
-        <v-text-field
-          id="password"
-          label="Masukkan password baru"
-          outlined
-          v-model="passwordInput"
-        ></v-text-field>
-      </v-row>
-      <p v-if="errorText" class="error-text">{{ errorText }}</p>
-      <v-btn color="primary" @click="doRegister">Simpan</v-btn>
-    </v-col>
+    <v-form ref="registerForm" v-model="valid" lazy-validation>
+      <v-col>
+        <v-row class="input-field">
+          <v-text-field
+            id="username"
+            label="Masukkan nama pengguna"
+            outlined
+            v-model="usernameInput"
+            autocomplete="off"
+            :rules="[
+              (inputValue) => !!inputValue || `Nama pengguna harus diisi`,
+              (inputValue) =>
+                (inputValue && inputValue.length <= 10) ||
+                'Nama pengguna tidak boleh lebih dari 10 karakter',
+            ]"
+          ></v-text-field>
+        </v-row>
+        <v-row class="input-field">
+          <v-text-field
+            id="email"
+            label="Masukkan email"
+            outlined
+            v-model="emailInput"
+            autocomplete="off"
+            :rules="[
+              (inputValue) => !!inputValue || 'E-mail harus diisi',
+              (inputValue) =>
+                /.+@.+\..+/.test(inputValue) || 'E-mail harus valid',
+            ]"
+          ></v-text-field>
+        </v-row>
+        <v-row class="input-field">
+          <v-text-field
+            id="password"
+            label="Masukkan password baru"
+            outlined
+            v-model="passwordInput"
+            type="password"
+            :rules="[
+              (inputValue) => !!inputValue || 'Password harus diisi',
+              (inputValue) =>
+                /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/g.test(inputValue) ||
+                'Password harus valid',
+            ]"
+          ></v-text-field>
+        </v-row>
+        <p v-if="errorText" class="error-text">{{ errorText }}</p>
+        <v-btn color="primary" @click="doRegister">Simpan</v-btn>
+      </v-col>
+    </v-form>
   </div>
 </template>
 
 <script>
-import {
-  validateUsername,
-  validateEmail,
-  validatePassword,
-} from "@/utils/validator.js";
-
 export default {
   name: "Register",
   data() {
     return {
+      valid: true,
       errorText: "",
       usernameInput: "",
       emailInput: "",
@@ -53,8 +68,10 @@ export default {
   },
   methods: {
     async doRegister() {
-      const isValid = this.validateUserInput();
-      if (!isValid) return;
+      const registerForm = this.$refs.registerForm;
+      registerForm.validate();
+
+      if (!this.valid) return;
 
       const result = await this.$store.dispatch("auth/register", {
         username: this.usernameInput,
@@ -67,35 +84,6 @@ export default {
       } else {
         this.errorText = this.$store.state.auth.info;
       }
-    },
-    validateUserInput() {
-      // Reset Error Text
-      this.errorText = "";
-
-      // Validate Username Input
-      const { isUsernameValid, usernameErrorText } = validateUsername(
-        this.usernameInput
-      );
-      if (!isUsernameValid) {
-        this.errorText = usernameErrorText;
-        return false;
-      }
-      // Validate Email Input
-      const { isEmailValid, emailErrorText } = validateEmail(this.emailInput);
-      if (!isEmailValid) {
-        this.errorText = emailErrorText;
-        return false;
-      }
-      // Validate Password Input
-      const { isPasswordValid, passwordErrorText } = validatePassword(
-        this.passwordInput
-      );
-      if (!isPasswordValid) {
-        this.errorText = passwordErrorText;
-        return false;
-      }
-
-      return true;
     },
   },
 };
