@@ -86,7 +86,6 @@ const actions = {
         headers: { Authorization: `Bearer ${store.state.token}` },
       })
       .then((response) => {
-        console.warwn("response cekUser", response);
         if (response.data.message === "success") {
           store.commit("setToken", response.data.data.Token);
           store.commit(
