@@ -111,10 +111,5 @@ export default {
       ],
     };
   },
-  methods: {
-    changeAngka() {
-      this.user.phone = this.newInputValue;
-    },
-  },
 };
 </script>
