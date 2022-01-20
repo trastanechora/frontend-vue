@@ -42,6 +42,14 @@
           >eslint</a
         >
       </li>
+      <li>
+        <a
+          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest"
+          target="_blank"
+          rel="noopener"
+          >unit-jest</a
+        >
+      </li>
     </ul>
     <h3>Essential Links</h3>
     <ul>
